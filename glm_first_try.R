@@ -107,13 +107,6 @@ err2 <- err^2
 # compare with SD
 (sd <- sd(test.data$charges))
 
-# Get RMSE
-df %>% 
-  gather(key = modeltype, value = pred, pred_add, pred_interaction) %>%
-  mutate(residuals = Metabol - pred) %>%
-  group_by(modeltype) %>%
-  summarize(rmse = sqrt(mean(residuals^2)))
-
 # Visualize predictions vs real
 ggplot(test.data, aes(x = pred, y = charges)) +
   geom_point() +
